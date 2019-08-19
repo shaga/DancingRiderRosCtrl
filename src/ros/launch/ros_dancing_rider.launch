@@ -1,0 +1,16 @@
+<launch>
+
+ <!-- joy node -->
+  <node respawn="true" pkg="joy"
+        type="joy_node" name="joy_to_mechanum" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.03" />
+  </node>
+
+  <node respawn="true" pkg="rosserial_python"
+        type="serial_node.py" name="rosserial" output="screen">
+        <param name="port" value="tcp"/>
+  </node>
+
+  <node pkg="ros_dancing_rider" type="ros_dancing_rider_node" name="teleop"/>
+</launch>
